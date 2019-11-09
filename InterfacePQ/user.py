@@ -10,7 +10,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Frame(object):
+class Ui_Frame2(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(769, 484)
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
+    ui = Ui_Frame2()
     ui.setupUi(Frame)
     Frame.show()
     sys.exit(app.exec_())

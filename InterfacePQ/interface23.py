@@ -8,9 +8,18 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from user import Ui_Frame2
 
 
-class Ui_Frame(object):
+class Ui_Frame(object): 
+    def openWindow(self):
+        self.window=QtWidgets.QFrame()
+        self.ui=Ui_Frame2()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+       
+        
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(769, 484)
@@ -50,6 +59,7 @@ class Ui_Frame(object):
 "color:white;\n"
 " ")
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.openWindow)
         self.label_4 = QtWidgets.QLabel(Frame)
         self.label_4.setGeometry(QtCore.QRect(370, 60, 161, 41))
         font = QtGui.QFont()
