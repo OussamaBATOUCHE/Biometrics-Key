@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'interface2.ui'
+# Form implementation generated from reading ui file 'interface23.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
@@ -26,11 +26,13 @@ class Ui_Frame(object):
         self.label_2 = QtWidgets.QLabel(Frame)
         self.label_2.setGeometry(QtCore.QRect(16, 60, 331, 361))
         self.label_2.setStyleSheet(" \n"
-"background-image: url(:/interface/Bureau/image/interface.jpg);\n"
+"background-image: url(:/ressource/Bureau/Biometrics-Key/InterfacePQ/image/interface.jpg);\n"
+" \n"
 " ")
         self.label_2.setText("")
         self.label_2.setPixmap(QtGui.QPixmap("images/interface.jpg"))
         self.label_2.setScaledContents(True)
+        self.label_2.setIndent(4)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Frame)
         self.label_3.setGeometry(QtCore.QRect(350, 60, 401, 421))
@@ -43,9 +45,9 @@ class Ui_Frame(object):
         self.label_3.setObjectName("label_3")
         self.pushButton = QtWidgets.QPushButton(Frame)
         self.pushButton.setGeometry(QtCore.QRect(390, 320, 351, 41))
-        self.pushButton.setStyleSheet("border-radius:10px;\n"
-"background: #1e90ff;\n"
-"color:white;")
+        self.pushButton.setStyleSheet("background:#1e90ff;\n"
+"color:white;\n"
+" ")
         self.pushButton.setObjectName("pushButton")
         self.label_4 = QtWidgets.QLabel(Frame)
         self.label_4.setGeometry(QtCore.QRect(370, 60, 161, 41))
@@ -75,23 +77,32 @@ class Ui_Frame(object):
 " ")
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(Frame)
-        self.label_6.setGeometry(QtCore.QRect(480, 410, 51, 41))
+        self.label_6.setGeometry(QtCore.QRect(490, 410, 41, 41))
         self.label_6.setStyleSheet(" \n"
 " \n"
 "image: url(:/interface/Bureau/image/google-plus.png);")
         self.label_6.setText("")
+        self.label_6.setPixmap(QtGui.QPixmap("images/google-plus.png"))
+        self.label_6.setScaledContents(True)
+        self.label_6.setIndent(3)
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(Frame)
-        self.label_7.setGeometry(QtCore.QRect(560, 410, 67, 41))
+        self.label_7.setGeometry(QtCore.QRect(560, 410, 41, 41))
         self.label_7.setStyleSheet("\n"
 "image: url(:/interface/Bureau/image/facebook.png);")
         self.label_7.setText("")
+        self.label_7.setPixmap(QtGui.QPixmap("images/facebook.png"))
+        self.label_7.setScaledContents(True)
+        self.label_7.setIndent(2)
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(Frame)
-        self.label_8.setGeometry(QtCore.QRect(630, 410, 67, 41))
+        self.label_8.setGeometry(QtCore.QRect(630, 410, 41, 41))
         self.label_8.setStyleSheet("\n"
-"image: url(:/interface/Bureau/images/twitter.png);")
+"image: url(:/interface/Bureau/image/twitter.png);")
         self.label_8.setText("")
+        self.label_8.setPixmap(QtGui.QPixmap("images/twitter.png"))
+        self.label_8.setScaledContents(True)
+        self.label_8.setIndent(4)
         self.label_8.setObjectName("label_8")
         self.lineEdit = QtWidgets.QLineEdit(Frame)
         self.lineEdit.setGeometry(QtCore.QRect(390, 180, 341, 41))
@@ -122,17 +133,21 @@ class Ui_Frame(object):
         self.label_11.setGeometry(QtCore.QRect(10, 10, 81, 21))
         self.label_11.setStyleSheet(" \n"
 "image: url(:/interface/Bureau/image/Capture du 2019-11-09 08-47-15.png);")
+        self.label_11.setText("")
+        self.label_11.setPixmap(QtGui.QPixmap("images/Capture du 2019-11-09 08-47-15.png"))
         self.label_11.setObjectName("label_11")
         self.label_12 = QtWidgets.QLabel(Frame)
         self.label_12.setGeometry(QtCore.QRect(390, 20, 41, 51))
-        self.label_12.setStyleSheet(" \n"
-" ")
+        self.label_12.setStyleSheet("")
+        self.label_12.setText("")
         self.label_12.setObjectName("label_12")
         self.label_13 = QtWidgets.QLabel(Frame)
-        self.label_13.setGeometry(QtCore.QRect(370, 10, 81, 51))
+        self.label_13.setGeometry(QtCore.QRect(370, 10, 81, 61))
+        self.label_13.setStyleSheet("image: url(:/interface/Bureau/image/image4.png);")
         self.label_13.setText("")
         self.label_13.setPixmap(QtGui.QPixmap("images/image4.png"))
         self.label_13.setScaledContents(True)
+        self.label_13.setIndent(3)
         self.label_13.setObjectName("label_13")
 
         self.retranslateUi(Frame)
@@ -150,8 +165,6 @@ class Ui_Frame(object):
         self.commandLinkButton.setText(_translate("Frame", " forget password?"))
         self.commandLinkButton_2.setText(_translate("Frame", " Sign up"))
         self.label_10.setText(_translate("Frame", " Enter Details"))
-        self.label_11.setText(_translate("Frame", " "))
-        self.label_12.setText(_translate("Frame", " "))
 import qrc_rc
 
 
