@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'interface23.ui'
+# Form implementation generated from reading ui file 'user.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
@@ -35,50 +35,58 @@ class Ui_Frame(object):
         self.label_2.setIndent(4)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Frame)
-        self.label_3.setGeometry(QtCore.QRect(350, 60, 401, 421))
+        self.label_3.setGeometry(QtCore.QRect(370, 60, 401, 421))
         font = QtGui.QFont()
         font.setFamily("Ubuntu")
         font.setPointSize(30)
-        font.setItalic(False)
+        font.setItalic(True)
+        font.setUnderline(False)
         self.label_3.setFont(font)
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.pushButton = QtWidgets.QPushButton(Frame)
-        self.pushButton.setEnabled(True)
-        self.pushButton.setGeometry(QtCore.QRect(390, 320, 341, 41))
+        self.pushButton.setGeometry(QtCore.QRect(370, 230, 351, 41))
         self.pushButton.setStyleSheet("background:#1e90ff;\n"
 "color:white;\n"
 " ")
         self.pushButton.setObjectName("pushButton")
         self.label_4 = QtWidgets.QLabel(Frame)
-        self.label_4.setGeometry(QtCore.QRect(370, 60, 161, 41))
+        self.label_4.setGeometry(QtCore.QRect(370, 80, 211, 41))
         font = QtGui.QFont()
-        font.setFamily("Times New Roman,Times,serif")
-        font.setPointSize(-1)
+        font.setFamily("Ubuntu")
+        font.setPointSize(30)
         font.setBold(False)
         font.setItalic(True)
         font.setWeight(50)
         self.label_4.setFont(font)
-        self.label_4.setStyleSheet("font: italic;\n"
-"font-size:10vw;\n"
-"font-family: \"Times New Roman\", Times, serif;\n"
+        self.label_4.setStyleSheet("/*font: italic;*/\n"
+"/*font-size:10vw;*/\n"
+"/*font-family: \"Times New Roman\", Times, serif;*/\n"
+"/*font-style: italic;*/\n"
+"/*font-size: 40px;*/\n"
 "font-style: italic;\n"
-"font-size: 40px;")
+"font-size:10vw;\n"
+"color:black;")
+        self.label_4.setTextFormat(QtCore.Qt.AutoText)
+        self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.label_5 = QtWidgets.QLabel(Frame)
-        self.label_5.setGeometry(QtCore.QRect(380, 110, 221, 31))
+        self.label_5.setGeometry(QtCore.QRect(480, 130, 221, 51))
         font = QtGui.QFont()
         font.setFamily("Ubuntu")
-        font.setPointSize(15)
+        font.setPointSize(20)
+        font.setBold(False)
         font.setItalic(True)
+        font.setWeight(50)
         self.label_5.setFont(font)
-        self.label_5.setStyleSheet("color:#a9a9a9;\n"
+        self.label_5.setStyleSheet(" \n"
 "font-style: italic;\n"
 "font-size:10vw;\n"
+"color:black;\n"
 " ")
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(Frame)
-        self.label_6.setGeometry(QtCore.QRect(490, 410, 41, 41))
+        self.label_6.setGeometry(QtCore.QRect(460, 180, 41, 41))
         self.label_6.setStyleSheet(" \n"
 " \n"
 "image: url(:/interface/Bureau/image/google-plus.png);")
@@ -88,7 +96,7 @@ class Ui_Frame(object):
         self.label_6.setIndent(3)
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(Frame)
-        self.label_7.setGeometry(QtCore.QRect(560, 410, 41, 41))
+        self.label_7.setGeometry(QtCore.QRect(530, 180, 41, 41))
         self.label_7.setStyleSheet("\n"
 "image: url(:/interface/Bureau/image/facebook.png);")
         self.label_7.setText("")
@@ -97,7 +105,7 @@ class Ui_Frame(object):
         self.label_7.setIndent(2)
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(Frame)
-        self.label_8.setGeometry(QtCore.QRect(630, 410, 41, 41))
+        self.label_8.setGeometry(QtCore.QRect(590, 180, 41, 41))
         self.label_8.setStyleSheet("\n"
 "image: url(:/interface/Bureau/image/twitter.png);")
         self.label_8.setText("")
@@ -105,31 +113,6 @@ class Ui_Frame(object):
         self.label_8.setScaledContents(True)
         self.label_8.setIndent(4)
         self.label_8.setObjectName("label_8")
-        self.lineEdit = QtWidgets.QLineEdit(Frame)
-        self.lineEdit.setGeometry(QtCore.QRect(390, 180, 341, 41))
-        self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_2 = QtWidgets.QLineEdit(Frame)
-        self.lineEdit_2.setGeometry(QtCore.QRect(390, 230, 341, 41))
-        self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.label_9 = QtWidgets.QLabel(Frame)
-        self.label_9.setGeometry(QtCore.QRect(440, 370, 191, 17))
-        self.label_9.setStyleSheet("color:#696969; ")
-        self.label_9.setObjectName("label_9")
-        self.commandLinkButton = QtWidgets.QCommandLinkButton(Frame)
-        self.commandLinkButton.setGeometry(QtCore.QRect(600, 280, 177, 41))
-        self.commandLinkButton.setStyleSheet("color:#1e90ff;")
-        self.commandLinkButton.setObjectName("commandLinkButton")
-        self.commandLinkButton_2 = QtWidgets.QCommandLinkButton(Frame)
-        self.commandLinkButton_2.setGeometry(QtCore.QRect(600, 360, 177, 41))
-        self.commandLinkButton_2.setStyleSheet("color:#1e90ff;")
-        self.commandLinkButton_2.setObjectName("commandLinkButton_2")
-        self.label_10 = QtWidgets.QLabel(Frame)
-        self.label_10.setGeometry(QtCore.QRect(390, 150, 121, 17))
-        self.label_10.setStyleSheet("color:#696969;\n"
-" ")
-        self.label_10.setTextFormat(QtCore.Qt.RichText)
-        self.label_10.setObjectName("label_10")
         self.label_11 = QtWidgets.QLabel(Frame)
         self.label_11.setGeometry(QtCore.QRect(10, 10, 81, 21))
         self.label_11.setStyleSheet(" \n"
@@ -143,7 +126,7 @@ class Ui_Frame(object):
         self.label_12.setText("")
         self.label_12.setObjectName("label_12")
         self.label_13 = QtWidgets.QLabel(Frame)
-        self.label_13.setGeometry(QtCore.QRect(370, 10, 71, 61))
+        self.label_13.setGeometry(QtCore.QRect(370, 10, 81, 51))
         self.label_13.setStyleSheet("image: url(:/interface/Bureau/image/image4.png);")
         self.label_13.setText("")
         self.label_13.setPixmap(QtGui.QPixmap("images/image4.png"))
@@ -151,18 +134,21 @@ class Ui_Frame(object):
         self.label_13.setIndent(3)
         self.label_13.setObjectName("label_13")
         self.pushButton_2 = QtWidgets.QPushButton(Frame)
-        self.pushButton_2.setGeometry(QtCore.QRect(490, 410, 41, 41))
+        self.pushButton_2.setGeometry(QtCore.QRect(460, 180, 41, 41))
         self.pushButton_2.setStyleSheet("border-radius:10px;\n"
 " ")
         self.pushButton_2.setText("")
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_3 = QtWidgets.QPushButton(Frame)
-        self.pushButton_3.setGeometry(QtCore.QRect(560, 410, 41, 41))
-        self.pushButton_3.setStyleSheet("border-radius:10px;")
+        self.pushButton_3.setGeometry(QtCore.QRect(530, 180, 41, 41))
+        self.pushButton_3.setStyleSheet("border-radius:10px; \n"
+" ;")
+        self.pushButton_3.setText("")
         self.pushButton_3.setObjectName("pushButton_3")
         self.pushButton_4 = QtWidgets.QPushButton(Frame)
-        self.pushButton_4.setGeometry(QtCore.QRect(630, 410, 41, 41))
-        self.pushButton_4.setStyleSheet("border-radius:10px;")
+        self.pushButton_4.setGeometry(QtCore.QRect(590, 180, 41, 41))
+        self.pushButton_4.setStyleSheet("border-radius:10px; ")
+        self.pushButton_4.setText("")
         self.pushButton_4.setObjectName("pushButton_4")
 
         self.retranslateUi(Frame)
@@ -171,17 +157,9 @@ class Ui_Frame(object):
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Frame"))
-        self.pushButton.setText(_translate("Frame", " LOGIN"))
+        self.pushButton.setText(_translate("Frame", " Exit"))
         self.label_4.setText(_translate("Frame", " Welcome"))
-        self.label_5.setText(_translate("Frame", " Sign in to builder"))
-        self.lineEdit.setPlaceholderText(_translate("Frame", "Email"))
-        self.lineEdit_2.setPlaceholderText(_translate("Frame", "password"))
-        self.label_9.setText(_translate("Frame", " Don\'t have an account?"))
-        self.commandLinkButton.setText(_translate("Frame", " forget password?"))
-        self.commandLinkButton_2.setText(_translate("Frame", " Sign up"))
-        self.label_10.setText(_translate("Frame", " Enter Details"))
-        self.pushButton_3.setText(_translate("Frame", " "))
-        self.pushButton_4.setText(_translate("Frame", " "))
+        self.label_5.setText(_translate("Frame", "amir hamel"))
 import qrc_rc
 
 
