@@ -152,7 +152,7 @@ class Ui_Frame(object):
         self.label_10.setText(_translate("Frame", " Enter Details"))
         self.label_11.setText(_translate("Frame", " "))
         self.label_12.setText(_translate("Frame", " "))
-#import qrc_rc
+import qrc_rc
 
 
 if __name__ == "__main__":
