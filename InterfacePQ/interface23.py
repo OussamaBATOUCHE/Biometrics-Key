@@ -16,7 +16,9 @@ class Ui_Frame(object):
         self.window=QtWidgets.QFrame()
         self.ui=Ui_Frame2()
         self.ui.setupUi(self.window)
+        Frame.hide()
         self.window.show()
+
 
        
         
