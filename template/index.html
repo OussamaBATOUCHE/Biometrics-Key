@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI For Science</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Wrapper -->
+					<div id="wrapper">
+
+						<!-- Panel (Banner) -->
+							<section class="panel banner right">
+								<div class="content color0 span-3-75">
+									<h1 class="major">AI
+										For Biometric</h1>
+									<p>This is <strong>AI</strong> based application, a free tool to help sciencetific 
+										community to <a href="#prediction">Authenticate</a> users to there apps using there faces :) </p>
+									<ul class="actions">
+										<li>
+											<a href="#auth"  class="button primary color1 circle ">
+												Authenticate
+											    <span class="icon solid fa-user"></span>
+										    </a>
+										</li>
+										<li>
+											<a href="#prediction" class="button primary color1 circle ">
+													New user (-
+														{% if status %}
+															01
+															{{status}} %
+														{% endif %} 
+															 -)
+													<span class="icon solid fa-angle-right"></span>
+										    </a>
+										</li>
+										
+									</ul>
+								</div>
+								<div class="image filtered span-1-75" data-position="25% 25%">
+									<img src="images/pic01.jpg" alt="" />
+								</div>
+							</section>
+
+							<!-- Panel -->
+							<section class="panel color4-alt" id="prediction">
+								<div class="intro color4">
+									<h2 class="major">Create New User</h2>
+									<p>To create new user, please specify the correct information for the user.<br>
+										<ul class="alt">
+											<li> - Name.</li>
+											<li> - Email.</li>
+											<li> - Password.</li>
+										</ul>
+									</p>
+								</div>
+								<div class="inner columns divided">
+									<div class="span-3-25">
+										<form method="post" action="/newUser">
+											<div class="fields">
+												<div class="field half">
+													<label for="name">Name</label>
+													<input type="text" name="name" id="name" value="" placeholder="John"  required/>
+												</div>
+												<div class="field half">
+													<label for="demo-year">Email</label>
+													<input type="Email" name="demo-year" id="demo-year" value="" placeholder="hello@xys.dz"  required/>
+												</div>
+												<div class="field half">
+													<label for="demo-axi">Password</label>
+													<input type="Password" name="demo-axi" id="demo-axi" value="" placeholder="********"required/>
+												</div>
+												<div class="field half">
+													<label for="demo-axi">Verify your password</label>
+													<input type="Password" name="demo-axi" id="demo-axi" value=""  required/>
+												</div>
+											</div>
+											<ul class="actions">
+												<li><input type="submit" value="Create" class="button primary" /></li>
+												<li><input type="submit2" value="Face ID" class="button primary" /></li>
+											</ul>
+										</form>
+									</div>
+								</div>
+							</section>
+							<section class="panel color2-alt" id="auth">
+								<div class="inner columns divided">
+									<h2 class="major">Authentication</h2>
+									<div class="span-3-25">
+										
+										<form method="post" action="/auth">
+											
+											<div class="fields">
+												<div class="field half">
+													<label for="name">Name</label>
+													<input type="text" name="name" id="name" value="" placeholder="John"  required/>
+												</div>
+												<div class="field half">
+													<label for="demo-year">Email</label>
+													<input type="Email" name="demo-year" id="demo-year" value="" placeholder="hello@xys.dz"  />
+												</div>
+											</div>
+											<ul class="actions">
+												<li><input onclick="auth()" type="submit" value="Face ID (IT TAKES 5s)" class="button primary" /></li>
+											</ul>
+										</form>
+									</div>
+								</div>
+							</section>
+
+						<!-- Panel -->
+						
+						<!-- Copyright -->
+							<div class="copyright">&copy; AI for Science. By: <a href="https://www.oussama-batouche.tk">BATOUCHE</a>.</div>
+
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="static/assets/js/jquery.min.js"></script>
+			<script src="static/assets/js/browser.min.js"></script>
+			<script src="static/assets/js/breakpoints.min.js"></script>
+			<script src="static/assets/js/main.js"></script>
+			<script>
+				function auth() {
+						alert("After clicking on the [ OK ] button, make sure to look at your webcam and blink your eyes 3 times.");
+					  }
+			</script>
+	</body>
+</html>

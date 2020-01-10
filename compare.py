@@ -1,70 +1,89 @@
 # import the necessary packages
-from skimage import measure 
+# from skimage.measure import structural_similarity as ssim
 import matplotlib.pyplot as plt
 import numpy as np
 import cv2
+import detect_blinks as db
+import argparse
+import glob
 
 def mse(imageA, imageB):
-	# the 'Mean Squared Error' between the two images is the
-	# sum of the squared difference between the two images;
-	# NOTE: the two images must have the same dimension
-	err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
-	err /= float(imageA.shape[0] * imageA.shape[1])
-	
-	# return the MSE, the lower the error, the more "similar"
-	# the two images are
-	return err
+    im1 = cv2.imread(imageA)
+    im1 = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
+    im2 = cv2.imread(imageB)
+    im2 = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
+    im1 = cv2.resize(im1, (200,200), interpolation = cv2.INTER_CUBIC)
+    im2 = cv2.resize(im2, (200,200), interpolation = cv2.INTER_CUBIC)
+    # the 'Mean Squared Error' between the two images is the
+    # sum of the squared difference between the two images;
+    # NOTE: the two images must have the same dimension
+    
+    try:
+        im = im2[:, :, 0]
+    except:
+        im = im2
+    # print(im.shape)
+    
+    err = np.sum((im1.astype("float") - im.astype("float")))
+    err /= float(im1.shape[0] * im2.shape[1])
+
+    # return the MSE, the lower the error, the more "similar"
+    # the two images are
+    print("### [MSE] : ",err,"###")
+    return err
 
 def compare_images(imageA, imageB, title):
-	# compute the mean squared error and structural similarity
-	# index for the images
-	m = mse(imageA, imageB)
-	s = measure.compare_ssim(imageA, imageB)
+    # compute the mean squared error and structural similarity
+    # index for the images
+    m = mse(imageA, imageB)
+    s = ssim(imageA, imageB)
 
-	# setup the figure
-	fig = plt.figure(title)
-	plt.suptitle("MSE: %.2f, SSIM: %.2f" % (m, s))
+    # setup the figure
+    fig = plt.figure(title)
+    plt.suptitle("MSE: %.2f, SSIM: %.2f" % (m, s))
 
-	# show first image
-	ax = fig.add_subplot(1, 2, 1)
-	plt.imshow(imageA, cmap = plt.cm.gray)
-	plt.axis("off")
+    # show first image
+    ax = fig.add_subplot(1, 2, 1)
+    plt.imshow(imageA, cmap = plt.cm.gray)
+    plt.axis("off")
 
-	# show the second image
-	ax = fig.add_subplot(1, 2, 2)
-	plt.imshow(imageB, cmap = plt.cm.gray)
-	plt.axis("off")
+    # show the second image
+    ax = fig.add_subplot(1, 2, 2)
+    plt.imshow(imageB, cmap = plt.cm.gray)
+    plt.axis("off")
 
-	# show the images
-	plt.show()
+    # show the images
+    plt.show()
 
-# load the images -- the original, the original + contrast,
-# and the original + photoshop
-original = cv2.imread("images/img1.jpg")
-contrast = cv2.imread("images/img2.jpg")
-shopped = cv2.imread("images/img3.jpg")
+# print(mse("faces/amire.jpg"))
 
-# convert the images to grayscale
-original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
-contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
-shopped = cv2.cvtColor(shopped, cv2.COLOR_BGR2GRAY)
+def final_compare(user, auth = "faces/auth.jpg"):
+    blink = db.count_blink(min=2)
+    
+    
+    print(" >> PREPROCESSING --------- ")
+    min_mse = 1000
+    most_like=''
+    for filename in glob.glob('faces/*.jpg'): 
+        if (filename) != auth:
+            print(" - Comparing between [",auth,"] and [",filename,"]")
+            val_mse = abs(mse(auth,filename))
+            if val_mse < min_mse:
+                min_mse = val_mse
+                most_like = filename
+    person_name = most_like.split("/")[len(most_like.split("/"))-1].split(".")[0]
+    print(" >> END PREPROCESSING --------- ")
+    print("    --- the most likely person is : ",person_name,"[",min_mse,"]")
+    result = blink and (-5.00 <= min_mse <= 5.00) and person_name == user
+    print("###",result,'###')
+    return result
 
-# initialize the figure
-fig = plt.figure("Images")
-images = ("Original", original), ("Contrast", contrast), ("Photoshopped", shopped)
 
-# loop over the images
-for (i, (name, image)) in enumerate(images):
-	# show the image
-	ax = fig.add_subplot(1, 3, i + 1)
-	ax.set_title(name)
-	plt.imshow(image, cmap = plt.cm.gray)
-	plt.axis("off")
 
-# show the figure
-plt.show()
+ap = argparse.ArgumentParser()
+ap.add_argument("-u", "--user", type=str, required=False,
+    help="User name to get his photo")
+args = vars(ap.parse_args())
 
-# compare the images
-compare_images(original, original, "Original vs. Original")
-compare_images(original, contrast, "Original vs. Contrast")
-compare_images(original, shopped, "Original vs. Photoshopped")
+# print(abs(mse("faces/auth.jpg","faces/yakoub.jpg")))
+final_compare(args["user"])
