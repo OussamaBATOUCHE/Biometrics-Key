@@ -10,60 +10,42 @@ import time
 import dlib
 import cv2
 import face_extraction as fe
+import os
 
-def capt_to_auth(name="auth"):
-    key = cv2. waitKey(0)
-    webcam = cv2.VideoCapture(0)
-    j=30
-    while True and j != 0 :
-        j=j-1
-            
-        check, frame = webcam.read()
-        #print(check) #prints true as long as the webcam is running
-        #print(frame) #prints matrix values of each framecd 
-        cv2.imshow("Capturing", frame)
-        key = cv2.waitKey(1)
-        
-        if j == 0:
-            img_path = "auth/user.jpg"  
-            cv2.imwrite(filename=img_path, img=frame)
-            print('img write in ',img_path,'-')
-            if fe.AreFaces(img_path)==True:
-                webcam.release()
-                # img_new = cv2.imread('primaryDB/oussama.jpg', cv2.IMREAD_GRAYSCALE)
-                # img_new = cv2.imshow("Captured Image", img_new)
-                cv2.waitKey(1650)
-                # cv2.destroyAllWindows()
-                # Frame.show()
-                print("Image saved!")
-                
-                fe.extractFace(img_path,name)
-                cv2.destroyWindow("Capturing")
-                
-                break
-            else:
-                os.system('rm '+img_path)
-                print('[newUser] Image deleted!')
-                webcam.release()
-                cv2.destroyWindow("Capturing")
+
+def check_extract_faces(frame, name="auth"):
+
+    if frame is not None:
+        img_path = "auth/user.jpg"
+        cv2.imwrite(filename=img_path, img=frame)
+        print('\nimg write in ', img_path, '-')
+        if fe.AreFaces(img_path) == True:
+            cv2.waitKey(1650)
+            print("\nImage saved!")
+            fe.extractFace(img_path, name)
+        else:
+            os.system('rm '+img_path)
+            print('\n[newUser] Image deleted!')
+
 
 def eye_aspect_ratio(eye):
     # compute the euclidean distances between the two sets of
     # vertical eye landmarks (x, y)-coordinates
     A = dist.euclidean(eye[1], eye[5])
     B = dist.euclidean(eye[2], eye[4])
- 
+
     # compute the euclidean distance between the horizontal
     # eye landmark (x, y)-coordinates
     C = dist.euclidean(eye[0], eye[3])
- 
+
     # compute the eye aspect ratio
     ear = (A + B) / (2.0 * C)
- 
+
     # return the eye aspect ratio
     return ear
 
-def count_blink(min=5):
+
+def count_blink(min=3):
     # construct the argument parse and parse the arguments
     # ap = argparse.ArgumentParser()
     # ap.add_argument("-p", "--shape-predictor", required=True,
@@ -77,14 +59,14 @@ def count_blink(min=5):
     # frames the eye must be below the threshold
     EYE_AR_THRESH = 0.3
     EYE_AR_CONSEC_FRAMES = 3
-    
+
     # initialize the frame counters and the total number of blinks
     COUNTER = 0
     TOTAL = 0
 
     # initialize dlib's face detector (HOG-based) and then create
     # the facial landmark predictor
-    print("[INFO] loading facial landmark predictor...")
+    print("\n[INFO] loading facial landmark predictor...")
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
@@ -94,31 +76,34 @@ def count_blink(min=5):
     (rStart, rEnd) = face_utils.FACIAL_LANDMARKS_IDXS["right_eye"]
 
     # start the video stream thread
-    print("[INFO] starting video stream thread...")
+    print("\n[INFO] starting video stream thread...")
     # vs = FileVideoStream(args["video"]).start()
     # fileStream = True
-    vs = VideoStream(src=0).start()
-    # vs = VideoStream(usePiCamera=True).start()
+    # vs = VideoStream(src=0).start()
+    # vs = VideoStream(usePiCamera=True).start() #Use for Raspberry Pi
+    vs = VideoStream().start()
     fileStream = False
     time.sleep(1.0)
 
-    j=0
+    j = 0
     result = False
+    compareFrame = []
+
     # loop over frames from the video stream
     while True and result == False:
-        j=j+1
+        j = j+1
         # if this is a file video stream, then we need to check if
         # there any more frames left in the buffer to process
         if fileStream and not vs.more():
             break
-    
+
         # grab the frame from the threaded video file stream, resize
         # it, and convert it to grayscale
         # channels)
         frame = vs.read()
         frame = imutils.resize(frame, width=800)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    
+
         # detect faces in the grayscale frame
         rects = detector(gray, 0)
         # loop over the face detections
@@ -128,17 +113,16 @@ def count_blink(min=5):
             # array
             shape = predictor(gray, rect)
             shape = face_utils.shape_to_np(shape)
-    
+
             # extract the left and right eye coordinates, then use the
             # coordinates to compute the eye aspect ratio for both eyes
             leftEye = shape[lStart:lEnd]
             rightEye = shape[rStart:rEnd]
             leftEAR = eye_aspect_ratio(leftEye)
             rightEAR = eye_aspect_ratio(rightEye)
-    
+
             # average the eye aspect ratio together for both eyes
             ear = (leftEAR + rightEAR) / 2.0
-
 
             # compute the convex hull for the left and right eye, then
             # visualize each of the eyes
@@ -151,7 +135,7 @@ def count_blink(min=5):
             # threshold, and if so, increment the blink frame counter
             if ear < EYE_AR_THRESH:
                 COUNTER += 1
-    
+
             # otherwise, the eye aspect ratio is not below the blink
             # threshold
             else:
@@ -159,40 +143,42 @@ def count_blink(min=5):
                 # then increment the total number of blinks
                 if COUNTER >= EYE_AR_CONSEC_FRAMES:
                     TOTAL += 1
-    
+
                 # reset the eye frame counter
                 COUNTER = 0
                 # draw the total number of blinks on the frame along with
             # the computed eye aspect ratio for the frame
             cv2.putText(frame, "Blinks: {}".format(TOTAL), (10, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
             cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+
         # show the frame
-        cv2.imshow("Frame", frame)
+        # cv2.imshow("Frame", frame)
         key = cv2.waitKey(1) & 0xFF
-        print(j)
+        # print(j)
+        compareFrame = frame
         if TOTAL >= min:
             result = True
             break
-        if j==100: # 5 seconds
+        if j == 100:  # 5 seconds
             result = False
             break
-        
+
+        if result == True:
+            check_extract_faces(compareFrame)
+            yield(compareFrame)
         # if the `q` key was pressed, break from the loop
         if key == ord("q"):
             break
+
     # do a bit of cleanup
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
     vs.stop()
 
-    if result == True:
-        capt_to_auth()
-    
     return result
-    
 
-# print(count_blink(min=2))
 
-print("[INFO] It works !")
+# count_blink(min=2)
+
+# print("[INFO] It works !")
